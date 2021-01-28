@@ -9,7 +9,6 @@ Rails.application.routes.draw do
       post '/poll', to: 'poll#create'
       get '/poll/:id', to: 'poll#show'
       get '/poll/:poll_id/:id', to: 'poll#register_vote'
-      # get 'user/:id/votes', to: 'user#show_votes'
     end
   end
 

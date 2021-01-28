@@ -19,15 +19,6 @@ module Api
           render json: { error: user.errors.messages }, status: 422
         end
       end
-
-      # def show_votes
-      #   votes = Vote.where(params[:id]).includes(:option)
-      #   # votes.each do |vote|
-      #   #   # data << vote.option[:option]
-      #   #   vote[:voted_option] = vote.option[:option]
-      #   # end
-      #   render json: { data: votes, vote_count: votes.count }, status: 200
-      # end
     end
   end
 end

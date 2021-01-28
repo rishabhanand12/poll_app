@@ -18,9 +18,9 @@ module Api
 
       def logged_in
         if params[:user_id].nil?
-          render json: { error: 'unauthorised' }, status: 401
+          render json: { error: 'unauthorized' }, status: 401
         else
-          render json: { message: 'authorised' }, status: 200
+          render json: { message: 'authorized' }, status: 200
         end
       end
     end
