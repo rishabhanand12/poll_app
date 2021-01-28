@@ -14,12 +14,12 @@ module UserHelpers
   end
 
   def authenticate
-    token = request.headers["authorization"].split(' ')[1]
+    token = request.headers['authorization'].split(' ')[1]
     user = decode_token(token)
     if user.nil?
       render json: { error: 'Unauthorized' }, status: 401
     else
-      params[:user_id] = user[0]["id"]
+      params[:user_id] = user[0]['id']
     end
   end
 end

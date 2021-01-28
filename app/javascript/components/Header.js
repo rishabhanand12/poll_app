@@ -4,7 +4,24 @@ import { Link } from "react-router-dom";
 export default function Header(props) {
   return (
     <>
-      {props.isLoggedIn ? <AuthenticatedHeader /> : <UnAuthenticatedHeader />}
+      <header className="container mx-auto">
+        <nav className="flex justify-between items-center">
+          <div>
+            <Link to="/">
+              <h1 className="text-base text-indigo-600 font-semibold tracking-wide uppercase text-4xl">
+                Polls
+              </h1>
+            </Link>
+          </div>
+          <div>
+            {props.isLoggedIn ? (
+              <AuthenticatedHeader />
+            ) : (
+              <UnAuthenticatedHeader />
+            )}
+          </div>
+        </nav>
+      </header>
     </>
   );
 }
@@ -12,12 +29,10 @@ export default function Header(props) {
 function AuthenticatedHeader() {
   return (
     <>
-      <header>
-        <nav>
-          <Link to="/poll/add">Add Polls</Link>
-        </nav>
-        <button>Logout</button>
-      </header>
+      <Link className="ml-4" to="/poll/add">
+        Add Polls
+      </Link>
+      <button className="ml-4">Logout</button>
     </>
   );
 }
@@ -25,12 +40,12 @@ function AuthenticatedHeader() {
 function UnAuthenticatedHeader() {
   return (
     <>
-      <header>
-        <nav>
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Signup</Link>
-        </nav>
-      </header>
+      <Link className="ml-4" to="/login">
+        Login
+      </Link>
+      <Link className="ml-4" to="/signup">
+        Signup
+      </Link>
     </>
   );
 }

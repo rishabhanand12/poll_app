@@ -4,6 +4,8 @@ module Api
   module V1
     class UserController < ApplicationController
       include UserHelpers
+      # before_action :authenticate, only: [:show_votes]
+
       def create
         user = User.new(name: params[:name],
                         email: params[:email],
@@ -17,6 +19,15 @@ module Api
           render json: { error: user.errors.messages }, status: 422
         end
       end
+
+      # def show_votes
+      #   votes = Vote.where(params[:id]).includes(:option)
+      #   # votes.each do |vote|
+      #   #   # data << vote.option[:option]
+      #   #   vote[:voted_option] = vote.option[:option]
+      #   # end
+      #   render json: { data: votes, vote_count: votes.count }, status: 200
+      # end
     end
   end
 end

@@ -13,14 +13,19 @@ export default function App() {
   useEffect(() => {
     async function checkAuth() {
       try {
-        let api = "http://localhost:3000/api/v1/auth";
-        let req = await fetch(api, {
-          headers: {
-            authorization: localStorage.getItem("token"),
-          },
-        });
-        if (req.status === 200) {
-          setIsLoggedIn(true);
+        let token = localStorage.getItem("token");
+        if (!token) {
+          setIsLoggedIn(false);
+        } else {
+          let api = "http://localhost:3000/api/v1/auth";
+          let req = await fetch(api, {
+            headers: {
+              authorization: token,
+            },
+          });
+          if (req.status === 200) {
+            setIsLoggedIn(true);
+          }
         }
       } catch (err) {
         throw new Error(err);
@@ -42,13 +47,14 @@ export default function App() {
         <Route path="/login">
           <Login />
         </Route>
-        <Route path="/poll/add"></Route>
-        <AuthProvider
-          isLoggedIn={isLoggedIn}
-          token={localStorage.getItem("token")}
-        >
-          <AddPoll />
-        </AuthProvider>
+        <Route path="/poll/add">
+          <AuthProvider
+            isLoggedIn={isLoggedIn}
+            token={localStorage.getItem("token")}
+          >
+            <AddPoll />
+          </AuthProvider>
+        </Route>
       </Switch>
     </>
   );

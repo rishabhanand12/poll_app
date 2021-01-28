@@ -25,13 +25,8 @@ function Polls(_props) {
   return (
     <>
       <section className="container mx-auto">
-        <div className="lg:text-center text-3x1">
-          <h2 className="text-base text-indigo-600 font-semibold tracking-wide uppercase">
-            Polls
-          </h2>
-        </div>
-        {polls.map((poll) => (
-          <Poll topic={poll.topic} options={poll.options} />
+        {polls.map((poll, index) => (
+          <Poll poll={poll} index={index} />
         ))}
       </section>
     </>
